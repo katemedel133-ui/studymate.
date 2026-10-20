@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate - Student Task Reminder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <a href="#dashboard" class="brand">
+            <span class="brand-icon">S</span>
+            <span>
+                <strong>StudyMate</strong>
+                <small>STUDENT PLANNER</small>
+            </span>
+        </a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-link active">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#taskManagement" class="nav-link">
+                <span class="nav-icon">✓</span>
+                <span>Smart Task Management</span>
+            </a>
+
+            <a href="#deadlineTracker" class="nav-link">
+                <span class="nav-icon">◷</span>
+                <span>Deadline Tracker</span>
+            </a>
+
+            <a href="#taskAnalysis" class="nav-link">
+                <span class="nav-icon">▥</span>
+                <span>Student Progress Analytics</span>
+            </a>
+
+            <a href="#studySuggestions" class="nav-link">
+                <span class="nav-icon">✧</span>
+                <span>AI Study Suggestions</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-tip">
+                <span class="tip-icon">✦</span>
+                <strong>Keep going!</strong>
+                <p>Small progress is still progress. Keep working toward your goals.</p>
+            </div>
+            <p class="sidebar-version">StudyMate Prototype</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="topbar-label">STUDENT WORKSPACE</p>
+                <h1>My Dashboard</h1>
+            </div>
+            <div class="topbar-status">
+                <span class="status-dot"></span>
+                Stay organized
+            </div>
+        </header>
+
+        <section class="welcome" id="dashboard">
+            <div class="welcome-content">
+                <p class="eyebrow">YOUR STUDY SPACE</p>
+                <h2>Stay organized,<br>one task at a time.</h2>
+                <p>Manage your schoolwork, track deadlines, and make progress toward your goals.</p>
+                <a href="#taskManagement" class="welcome-button">Manage My Tasks <span>→</span></a>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+                <div class="art-circle">
+                    <span class="art-check">✓</span>
+                    <span class="art-star">✦</span>
+                    <span class="art-line"></span>
+                </div>
+                <div class="art-badge">YOUR GOALS MATTER</div>
+            </div>
+        </section>
+
+        <section class="dashboard">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">OVERVIEW</p>
+                    <h2>Your Task Summary</h2>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card total-card">
+                    <div class="stat-top">
+                        <span>Total Tasks</span>
+                        <span class="stat-icon">▤</span>
+                    </div>
+                    <h3 id="totalTasks">0</h3>
+                    <p>Tasks in your planner</p>
+                </div>
+
+                <div class="stat-card completed-card">
+                    <div class="stat-top">
+                        <span>Completed</span>
+                        <span class="stat-icon">✓</span>
+                    </div>
+                    <h3 id="completedTasks">0</h3>
+                    <p>Tasks finished</p>
+                </div>
+
+                <div class="stat-card pending-card">
+                    <div class="stat-top">
+                        <span>Pending</span>
+                        <span class="stat-icon">◷</span>
+                    </div>
+                    <h3 id="pendingTasks">0</h3>
+                    <p>Tasks to work on</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="taskManagement">
+            <div class="panel-heading">
+                <div class="feature-heading">
+                    <span class="feature-number">01</span>
+                    <div>
+                        <p class="section-kicker">STAY ORGANIZED</p>
+                        <h2>Smart Task Management</h2>
+                    </div>
+                </div>
+            </div>
+
+            <p class="section-description">
+                Add your school activities and organize them by priority.
+            </p>
+
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle"
+                        placeholder="e.g. Research assignment" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskSubject">Subject</label>
+                    <input type="text" id="taskSubject"
+                        placeholder="e.g. Computer Programming">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskDate">Deadline</label>
+                        <input type="date" id="taskDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="High">High</option>
+                            <option value="Normal" selected>Normal</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-button">
+                    <span>+</span> Add Task
+                </button>
+            </form>
+
+            <div class="subheading">
+                <div>
+                    <h3>My Tasks</h3>
+                    <p class="subheading-description">Your current school activities</p>
+                </div>
+                <span id="taskCountLabel" class="task-count">0 tasks</span>
+            </div>
+
+            <div id="taskList" class="task-list"></div>
+        </section>
+
+        <section class="panel" id="deadlineTracker">
+            <div class="panel-heading">
+                <div class="feature-heading">
+                    <span class="feature-number teal-number">02</span>
+                    <div>
+                        <p class="section-kicker">NEVER MISS A DEADLINE</p>
+                        <h2>Deadline Tracker and Reminders</h2>
+                    </div>
+                </div>
+            </div>
+
+            <p class="section-description">
+                Keep track of upcoming, completed, and overdue school deadlines.
+            </p>
+
+            <div id="deadlineList" class="task-list"></div>
+        </section>
+
+        <section class="panel" id="taskAnalysis">
+            <div class="panel-heading">
+                <div class="feature-heading">
+                    <span class="feature-number blue-number">03</span>
+                    <div>
+                        <p class="section-kicker">UNDERSTAND YOUR PROGRESS</p>
+                        <h2>Student Progress Analytics</h2>
+                    </div>
+                </div>
+            </div>
+
+            <p class="section-description">
+                Review your task patterns and identify which pending task to prioritize.
+            </p>
+
+            <button type="button" id="analyzeButton" class="primary-button">
+                Analyze My Tasks
+            </button>
+
+            <div id="analysisResult" class="result-box" aria-live="polite">
+                Your task analysis will appear here.
+            </div>
+        </section>
+
+        <section class="panel" id="studySuggestions">
+            <div class="panel-heading">
+                <div class="feature-heading">
+                    <span class="feature-number teal-number">04</span>
+                    <div>
+                        <p class="section-kicker">PERSONALIZED FOR YOU</p>
+                        <h2>AI-Powered Study Suggestions</h2>
+                    </div>
+                </div>
+            </div>
+
+            <p class="section-description">
+                Get helpful study tips based on your current tasks.
+            </p>
+
+            <button type="button" id="suggestionsButton" class="primary-button">
+                Get Study Suggestions
+            </button>
+
+            <div id="suggestionsResult" class="result-box" aria-live="polite">
+                Your personalized study suggestions will appear here.
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <span>StudyMate</span>
+            <span>Plan better. Learn better. Grow every day.</span>
+        </footer>
+
+    </main>
+</div>
+
+<script>
+document.querySelectorAll('.nav-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+        document.querySelectorAll('.nav-link').forEach(function(item) {
+            item.classList.remove('active');
+        });
+        this.classList.add('active');
+    });
+});
+
+const pageSections = document.querySelectorAll(
+    '#dashboard, #taskManagement, #deadlineTracker, #taskAnalysis, #studySuggestions'
+);
+
+if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.nav-link').forEach(function(link) {
+                    link.classList.toggle(
+                        'active',
+                        link.getAttribute('href') === '#' + entry.target.id
+                    );
+                });
+            }
+        });
+    }, { rootMargin: '-20% 0px -65% 0px' });
+
+    pageSections.forEach(function(section) {
+        sectionObserver.observe(section);
+    });
+}
+</script>
+
+</body>
+</html>
